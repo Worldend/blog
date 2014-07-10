@@ -10,7 +10,7 @@
        if ($post = $this->request->post())
        {
           // $user = ORM::factory('article')->append(array('title','text','date'), array($post['title'],$post['content'],date('Y-m-d')));
-            $user = ORM::factory('article')->append(array($post['title'],$post['preview'],$post['content'],date('Y-m-d')));
+            $user = ORM::factory('article')->append(array($post['title'],$post['preview'],$post['content']));
 
             $this->redirect(URL::base(true));
        }

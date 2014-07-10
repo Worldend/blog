@@ -23,5 +23,5 @@ class Controller_Articles extends Controller_Base {
  
         $this->template->content = $content;
     }   
- 
+
 } // Articles
