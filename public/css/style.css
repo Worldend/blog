@@ -1,0 +1,42 @@
+
+article{
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #eee;
+}
+	article header h3{
+		margin-top: 0;
+	}
+
+.form-search{
+	margin-top: 20px;
+}
+
+a.thumbnail.pull-left{
+	margin-right: 20px;
+}
+
+.notop, .notop h2{
+	margin-top: 0;
+}
+
+.breadcrumb > .active a{
+  color: #999999;
+}
+
+article > header > div{
+    font-size: 10px;
+    color: #999;
+}
+
+append{
+  
+}
+
+append input, append textarea{
+    width: 80%;
+}
+
+append textarea{
+    height: 500px;
+}
