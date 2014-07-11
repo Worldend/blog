@@ -5,14 +5,10 @@ class Controller_Page extends Controller_Base{
    // Главная страница
     public function action_index()
     {
-        $articles = array();
- 
-        $content = View::factory('index')
-                ->bind('articles', $articles);
- 
-        $articles = ORM::factory('Article')->get_all();
-      //  $articles = $article->get_all();
-      //  var_dump($content);
+        $content = View::factory('index');
+        $content->articles = ORM::factory('Article')
+            ->order_by('id','DESC')
+            ->find_all();
         $this->template->content = $content;
     }
      
