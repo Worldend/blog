@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
  
-class Model_Article extends Model
+class Model_Article extends ORM
 {
-    protected $_tableArticles = 'articles';
+    protected $_table_name = 'articles';
  
     /**
      * Get all articles
@@ -10,51 +10,58 @@ class Model_Article extends Model
      */
     public function get_all()
     {
-        return ORM::factory($this->_tableArticles)
-                        ->order_by('id','DESC')
-                        ->find();
+        $all_articles = ORM::factory('article')
+                                ->order_by('id','DESC')
+                                ->find_all()
+                                ->as_array();
+        
+        foreach($all_articles as $article)
+        {
+            $arr_articles[] = $article->as_array();
+        }
+        
+        return $arr_articles;
     }
     
     public function get_article($id = '')
     {
-        $result = ORM::factory($this->_tableArticles)
+        $result = ORM::factory('article')
                         ->where('id','=',':id')
                         ->param(':id',(int)$id)
+                        ->find()
                         ->as_array();
         if($result)
-            return $result[0];
+            return $result;
         else
             return FALSE;
     }
     
     public function get_user_articles($id)
     {
-        return ORM::factory($this->_tableArticles)
-                        ->where('user_id','=',':id')
-                        ->param(':id',(int)$id);
-    }
-    
-    public function append($value)
-    {
-        $article = ORM::factory($this->_tableArticles);
+        $all_articles = ORM::factory('article')
+                                ->where('user_id','=',':id')
+                                ->param(':id',(int)$id)
+                                ->find_all()
+                                ->as_array();
         
-        foreach ($column as $value)
+        foreach($all_articles as $article)
         {
-            switch ($column)
-            {
-                case 'title':
-                                $article->$title = $column;
-                    break;
-                case 'preview':
-                                $article->$preview = $column;
-                    break;
-                case 'text':
-                                $article->$text = $column;
-                    break;
-            }
+            $arr_articles[] = $article->as_array();
         }
         
-        $article->$date = date('Y-m-d');
-        $article->save();
+        return $arr_articles;
+    }
+    
+    public function append($array)
+    {
+        $article = ORM::factory('article');
+        
+        foreach ($array as $column => $value)
+        {
+            $article->$column = $value;
+        }
+      //  $article->date = date('Y-m-d');
+        $article->save();               
+
     }
 }

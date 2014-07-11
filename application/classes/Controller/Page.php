@@ -10,9 +10,9 @@ class Controller_Page extends Controller_Base{
         $content = View::factory('index')
                 ->bind('articles', $articles);
  
-        $article = new Model_Article();
-        $articles = $article->get_all();
- 
+        $articles = ORM::factory('Article')->get_all();
+      //  $articles = $article->get_all();
+      //  var_dump($content);
         $this->template->content = $content;
     }
      

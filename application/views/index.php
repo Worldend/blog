@@ -11,20 +11,20 @@
 	<div class="span8">
     <p>
       <a href="<?=URL::site('new')?>"><button class="btn btn-large btn-primary" type="button">Новая запись</button></a>
-    </p><br/>
+    </p><br/>      
+    
 <?php foreach($articles as $article): ?>
 		<article class="clearfix">
 			<header>
                 <div>Дата публикации: <?=$article['date']?></div>
-				<h3><?php echo $article['title']; ?></h3>
+				<h3><?=$article['title']; ?></h3>
 			</header>
 			<p>
-				<?php echo $article['preview']; ?>
+				<?=$article['preview']; ?>
 			</p>
             <a class="btn" href="<?php echo URL::site('articles/' . $article['id']); ?>">Показать полностью&raquo;</a>
 		</article>
 <?php endforeach; ?>
-
 		<!-- Pagination -->
 		<div class="pagination">
 			<ul>

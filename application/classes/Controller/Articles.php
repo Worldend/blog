@@ -4,7 +4,6 @@ class Controller_Articles extends Controller_Base {
  
     public function action_index()
     {
-       // echo '<script>alert()</script>';
         $content = View::factory('index');
         $this->template->content = $content;
     }
@@ -14,12 +13,8 @@ class Controller_Articles extends Controller_Base {
         $id = $this->request->param('id');
         $content = View::factory('article')
                         ->bind('article', $article);
-        //                ->bind('comments', $comments);
  
         $article = Model::factory('Article')->get_article($id);
- 
-    //    $comments_url = 'comments/' . $id;
-    //    $comments = Request::factory($comments_url)->execute();
  
         $this->template->content = $content;
     }   
