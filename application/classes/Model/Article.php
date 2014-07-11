@@ -19,7 +19,8 @@ class Model_Article extends ORM
         
         return $arr_articles;
     }
-    
+    /* Добавление статьи
+     * 
     public function append($array)
     {
         $article = ORM::factory('article');
@@ -28,8 +29,9 @@ class Model_Article extends ORM
         {
             $article->$column = $value;
         }
-      //  $article->date = date('Y-m-d');
+        
         $article->save();               
 
     }
+     */
 }

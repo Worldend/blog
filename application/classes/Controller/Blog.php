@@ -8,12 +8,14 @@ class Controller_Blog extends Controller_Base{
         $articles = array();
         $id = $this->request->param('id');
         if($id)
-        {
-            $content = View::factory('index')
-                        ->bind('articles', $articles);
-     
-           
-            $articles = Model::factory('Article')->get_user_articles($id);
+        {   
+            $content = View::factory('index');
+            
+            $content->articles = ORM::factory('Article')
+                                ->where('user_id','=',':id')
+                                ->param(':id',(int)$id)
+                                ->find_all();
+            
         }
         else $content = View::factory();
  

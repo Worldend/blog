@@ -9,14 +9,24 @@
 
        if ($post = $this->request->post())
        {
-          // $user = ORM::factory('article')->append(array('title','text','date'), array($post['title'],$post['content'],date('Y-m-d')));
-           $user = ORM::factory('Article')->append(array(
+         /*  Для модели
+          * 
+          * $user = ORM::factory('Article')->append(array(                 
                                                     'title' => $post['title'],
                                                     'preview' => $post['preview'],
                                                     'text' => $post['content'],
                                                     'date' => date('Y-m-d')
                                                     ));
-
+          */
+           
+           $user = ORM::factory('Article');
+               
+            $user->title = $post['title'];
+            $user->preview = $post['preview'];
+            $user->text = $post['content'];
+            $user->date = date('Y-m-d');
+            $user->save();
+            
             $this->redirect(URL::base(true));
        }
 
